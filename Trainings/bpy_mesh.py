@@ -1,4 +1,11 @@
+'''
+    Reference:
+        https://docs.blender.org
+'''
+
 import bpy
+
+import time
 from math import sin, cos, pi
 
 def create_mesh(name, vertices=[], edges=[], faces=[]):
@@ -8,7 +15,8 @@ def create_mesh(name, vertices=[], edges=[], faces=[]):
     return new_mesh
 
 def prepare(name, x, y, z, segments, angle, radius, width, step):
-    vertices=[]
+    time_start = time.time()
+    vertices = []
     for i in range(segments + 1):
         rad =  i * angle * pi / 180
         vertices+=[(x + width / 2, y, z), (x - width / 2, y, z)]
@@ -20,6 +28,7 @@ def prepare(name, x, y, z, segments, angle, radius, width, step):
     new_object = bpy.data.objects.new(name, new_mesh)
     view_layer = bpy.context.view_layer
     view_layer.active_layer_collection.collection.objects.link(new_object)
+    print("Finished: %.4f sec" % (time.time() - time_start))
 
 # Test
 prepare("obj_1",  0, 0, 0, 10, 36,  1, 1,    0)

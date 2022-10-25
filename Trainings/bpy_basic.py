@@ -1,6 +1,6 @@
 '''
     Reference:
-        https://docs.blender.org/api/current/index.html
+        https://docs.blender.org
 '''
 
 import bpy
